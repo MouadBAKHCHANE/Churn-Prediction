@@ -1,4 +1,4 @@
-# 🧠 AI-Driven Customer Retention Strategy: Predicting & Preventing Churn
+# 🧠 Data-Driven Customer Retention Strategy: Predicting & Preventing Churn
 
 <div align="center">
   <img src="profitability_impact.png" alt="Profitability Impact" width="800"/>
