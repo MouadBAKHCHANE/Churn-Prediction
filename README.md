@@ -1,8 +1,6 @@
 # 🧠 Data-Driven Customer Retention Strategy: Predicting & Preventing Churn
 
-<div align="center">
-  <img src="profitability_impact.png" alt="Profitability Impact" width="800"/>
-</div>
+
 
 <div align="center">
   <h3>🔴 Live Demo: <a href="https://mouadbakhchane-data-portfolio-dashboard-t8mqrg.streamlit.app/">Launch Dashboard App</a></h3>
@@ -45,6 +43,7 @@ To tackle this, I implemented a structured Data Science lifecycle:
 ### 2. Deep Dive: Profitability Distribution (Box Plot & Histogram)
 <div align="center">
   <img src="profitability_deep_dive.png" alt="Profitability Deep Dive" width="800"/>
+  <img src="profitability_impact.png" alt="Profitability Impact" width="800"/>
 </div>
 
 The dashboard's **Profitability Distribution** graph (shown above) reveals a critical nuance:
