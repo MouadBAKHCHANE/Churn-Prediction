@@ -12,111 +12,78 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- THEME MANAGEMENT ---
-if 'dark_mode' not in st.session_state:
-    st.session_state.dark_mode = True # Default to Dark
-
-def toggle_theme():
-    st.session_state.dark_mode = not st.session_state.dark_mode
-
-# Define Themes
-themes = {
-    "dark": {
-        "bg": "#0E1117",
-        "card_bg": "#1E1E1E",
-        "text": "#FFFFFF",
-        "text_secondary": "#A0A0A0",
-        "border": "#303030",
-        "accent": "#2962FF",
-        "success": "#00E676",
-        "danger": "#FF5252",
-        "plot_bg": "rgba(0,0,0,0)",
-        "plot_font": "#FAFAFA"
-    },
-    "light": {
-        "bg": "#F8F9FA",
-        "card_bg": "#FFFFFF",
-        "text": "#212529",
-        "text_secondary": "#6C757D",
-        "border": "#E9ECEF",
-        "accent": "#2962FF",
-        "success": "#28A745",
-        "danger": "#DC3545",
-        "plot_bg": "rgba(0,0,0,0)",
-        "plot_font": "#212529"
-    }
-}
-
-current_theme = themes["dark"] if st.session_state.dark_mode else themes["light"]
-theme_icon = "☀️" if st.session_state.dark_mode else "🌙"
-
-# Dynamic CSS
-st.markdown(f"""
+# Custom CSS for Static Dark Mode
+st.markdown("""
 <style>
-    /* Global Background */
-    .stApp {{
-        background-color: {current_theme['bg']};
-        color: {current_theme['text']};
-    }}
+    /* Global Background - Dark */
+    .stApp {
+        background-color: #0E1117;
+        color: #FFFFFF;
+    }
     
-    /* Card Style */
-    .metric-card {{
-        background-color: {current_theme['card_bg']};
+    /* Card Style - Dark */
+    .metric-card {
+        background-color: #1E1E1E;
         padding: 20px;
         border-radius: 12px;
-        box_shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 1px solid {current_theme['border']};
+        box_shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        border: 1px solid #303030;
         margin-bottom: 20px;
-    }}
+    }
     
-    .metric-title {{
-        color: {current_theme['text_secondary']};
+    .metric-title {
+        color: #A0A0A0;
         font-size: 0.9rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-    }}
+    }
     
-    .metric-value {{
-        color: {current_theme['text']};
+    .metric-value {
+        color: #FFFFFF;
         font-size: 1.8rem;
         font-weight: 700;
         margin: 5px 0;
-    }}
+    }
     
-    .metric-delta {{
+    .metric-delta {
         font-size: 0.85rem;
         font-weight: 500;
-    }}
+    }
     
-    .metric-delta.positive {{ color: {current_theme['success']}; }}
-    .metric-delta.negative {{ color: {current_theme['danger']}; }}
+    .metric-delta.positive { color: #00E676; }
+    .metric-delta.negative { color: #FF5252; }
     
     /* Headers */
-    h1, h2, h3 {{
-        color: {current_theme['text']} !important;
+    h1, h2, h3 {
+        color: #FFFFFF !important;
         font-family: 'Inter', sans-serif;
-    }}
+    }
     
     /* Input Labels */
-    .stSelectbox label, .stSlider label, .stNumberInput label {{
-        color: {current_theme['text']} !important;
-    }}
+    .stSelectbox label, .stSlider label, .stNumberInput label {
+        color: #FFFFFF !important;
+    }
+    
+    /* Sidebar */
+    .css-1d391kg {
+        background-color: #1E1E1E;
+    }
     
     /* Buttons */
-    .stButton>button {{
-        background-color: {current_theme['accent']};
+    .stButton>button {
+        background-color: #2962FF;
         color: white;
         border-radius: 8px;
         border: none;
         padding: 10px 24px;
         font-weight: 600;
         transition: all 0.2s;
-    }}
-    .stButton>button:hover {{
+    }
+    .stButton>button:hover {
         background-color: #0039CB;
         box-shadow: 0 4px 12px rgba(41, 98, 255, 0.2);
-    }}
+    }
     
 </style>
 """, unsafe_allow_html=True)
@@ -136,17 +103,12 @@ except Exception as e:
     st.error(f"Error loading assets: {e}")
     st.stop()
 
-# --- TOP BAR ---
-col_logo, col_spacer, col_theme = st.columns([1, 8, 1])
-with col_logo:
-    st.image("https://img.icons8.com/fluency/96/data-configuration.png", width=50)
-with col_theme:
-    st.button(theme_icon, on_click=toggle_theme, help="Toggle Theme")
-
 # --- SIDEBAR ---
 with st.sidebar:
+    st.image("https://img.icons8.com/fluency/96/data-configuration.png", width=60)
     st.title("RetainAI")
     st.markdown("Intelligence Suite")
+    
     st.markdown("---")
     
     page = st.radio("Navigate", ["📊 Overview & Insights", "🔮 Churn Simulator"], label_visibility="collapsed")
@@ -223,9 +185,9 @@ if page == "📊 Overview & Insights":
                 title=f"Customer Distribution by {col_filter}"
             )
             fig.update_layout(
-                plot_bgcolor=current_theme['plot_bg'], 
-                paper_bgcolor=current_theme['plot_bg'],
-                font={'color': current_theme['plot_font']}
+                plot_bgcolor="rgba(0,0,0,0)", 
+                paper_bgcolor="rgba(0,0,0,0)",
+                font={'color': '#FAFAFA'}
             )
             st.plotly_chart(fig, use_container_width=True)
             
@@ -241,9 +203,9 @@ if page == "📊 Overview & Insights":
                 opacity=0.7
             )
             fig2.update_layout(
-                plot_bgcolor=current_theme['plot_bg'], 
-                paper_bgcolor=current_theme['plot_bg'],
-                font={'color': current_theme['plot_font']}
+                plot_bgcolor="rgba(0,0,0,0)", 
+                paper_bgcolor="rgba(0,0,0,0)",
+                font={'color': '#FAFAFA'}
             )
             st.plotly_chart(fig2, use_container_width=True)
 
@@ -337,10 +299,10 @@ elif page == "🔮 Churn Simulator":
         fig_gauge = px.pie(values=[prob, 1-prob], names=["Risk", "Safe"], hole=0.7, 
                            color_discrete_sequence=['#FF3D00', '#E0E0E0'])
         fig_gauge.update_layout(showlegend=False, margin=dict(t=0,b=0,l=0,r=0), height=200,
-                                paper_bgcolor=current_theme['plot_bg'])
+                                paper_bgcolor="rgba(0,0,0,0)")
         st.plotly_chart(fig_gauge, use_container_width=True)
         
-        st.markdown(f"<h2 style='text-align: center; color: {'#FF3D00' if prob > 0.5 else current_theme['success']};'>{prob*100:.1f}% Risk</h2>", unsafe_allow_html=True)
+        st.markdown(f"<h2 style='text-align: center; color: {'#FF3D00' if prob > 0.5 else '#00E676'};'>{prob*100:.1f}% Risk</h2>", unsafe_allow_html=True)
         
         st.markdown("### 📋 Strategic Action Plan")
         
