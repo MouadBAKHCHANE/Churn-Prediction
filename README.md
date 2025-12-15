@@ -38,6 +38,12 @@ Using **Machine Learning (Random Forest)**, we move from reactive analysis to **
     *   The **Red Bar** (Churned Customers) shows that we are losing customers who are *also* profitable (~$970), but importantly, the gap indicates that our most loyal customers are our cash cows.
     *   **Strategic Takeaway:** We cannot afford to lose the "Whales" (High Profitability customers). A 5% reduction in churn here could double the net profit margin.
 
+### 2. Deep Dive: Profitability Distribution (Box Plot & Histogram)
+The dashboard's **Profitability Distribution** graph (shown in the live demo) reveals a critical nuance:
+*   **The Overlap:** While the median profitability of churned customers (Orange Box) is lower than retained ones (Blue Box), there is a significant **"Red Tail"** extending to the right.
+*   **The "Leaking Bucket" Phenomenon:** The histogram shows we are actively losing customers with profitability > $4,000. These are not just "users"; they are "subscribers" who likely generate 80% of the margin.
+*   **Action:** The standard retention policy treats a $50/month user the same as a $4,000 profit user. The model allows us to segment this "Red Tail" for VIP treatment.
+
 ---
 
 ## 🤖 Feature Importance: The "Signal" vs. The "Noise"
