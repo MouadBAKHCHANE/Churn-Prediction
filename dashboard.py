@@ -169,7 +169,7 @@ if page == "📊 Overview & Insights":
             # Prepare Data for Plotly
             churn_counts = df.groupby([col_filter, 'Churn']).size().reset_index(name='Count')
             # Calculate percentages
-            total_counts = df.groupby[col_filter].size().reset_index(name='Total')
+            total_counts = df.groupby(col_filter).size().reset_index(name='Total')
             churn_counts = churn_counts.merge(total_counts, on=col_filter)
             churn_counts['Percentage'] = (churn_counts['Count'] / churn_counts['Total']) * 100
             
