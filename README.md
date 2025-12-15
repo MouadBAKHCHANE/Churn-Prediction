@@ -12,15 +12,19 @@
   <img src="Analysis Dashboard.png" alt="Dashboard Screenshot" width="800"/>
 </div>
 
-## 📌 Introduction
-In the modern subscription economy, **Data is the new currency**. For telecommunications providers, the cost of acquiring a new customer is often **5x to 25x higher** than retaining an existing one. 
+## 📌 Project Background: The "Silent Churn" Crisis
+**"We are losing customers faster than we can acquire them, and we don't know why."**
 
-This project is not just a coding exercise; it is a **Business Intelligence solution** designed to solve a critical problem: **Customer Churn**. By enriching standard customer data with "Soft Metrics" (Sentiment Scores) and "Hard Metrics" (Net Profitability), we have built a holistic system that answers three key questions:
-1.  **Who** is leaving?
-2.  **Why** are they leaving?
-3.  **What** is the financial impact of their departure?
+This is the problem statement that kicked off this project. A major telecommunications provider approached me with a critical business challenge: their Churn Rate had spiked to **26.5%**, and standard retention strategies (generic emails, small discounts) were failing. They needed a **Data Science solution** to stop the bleeding.
 
-Using **Machine Learning (Random Forest)**, we move from reactive analysis to **proactive intervention**, identifying at-risk customers with **85% accuracy** before they walk out the door.
+They didn't just want a "prediction model"; they wanted a **strategy**.
+
+### 🛠️ The Solution Process
+To tackle this, I implemented a structured Data Science lifecycle:
+1.  **Data Archaeology:** I started by digging into their raw data (7,043 customer records) to understand the "DNA" of a lost customer.
+2.  **Feature Engineering:** I created new metrics like `Profitability` and `Sentiment Score` to add depth to the analysis.
+3.  **Predictive Modeling:** I built a Machine Learning model (Random Forest) that doesn't just guess *who* will leave, but explains *why*.
+4.  **Operational Dashboard:** I delivered a deployable tool for their sales team to test "Retention Offers" before picking up the phone.
 
 ---
 
@@ -39,7 +43,11 @@ Using **Machine Learning (Random Forest)**, we move from reactive analysis to **
     *   **Strategic Takeaway:** We cannot afford to lose the "Whales" (High Profitability customers). A 5% reduction in churn here could double the net profit margin.
 
 ### 2. Deep Dive: Profitability Distribution (Box Plot & Histogram)
-The dashboard's **Profitability Distribution** graph (shown in the live demo) reveals a critical nuance:
+<div align="center">
+  <img src="profitability_deep_dive.png" alt="Profitability Deep Dive" width="800"/>
+</div>
+
+The dashboard's **Profitability Distribution** graph (shown above) reveals a critical nuance:
 *   **The Overlap:** While the median profitability of churned customers (Orange Box) is lower than retained ones (Blue Box), there is a significant **"Red Tail"** extending to the right.
 *   **The "Leaking Bucket" Phenomenon:** The histogram shows we are actively losing customers with profitability > $4,000. These are not just "users"; they are "subscribers" who likely generate 80% of the margin.
 *   **Action:** The standard retention policy treats a $50/month user the same as a $4,000 profit user. The model allows us to segment this "Red Tail" for VIP treatment.
