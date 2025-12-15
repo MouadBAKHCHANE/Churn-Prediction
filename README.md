@@ -4,6 +4,14 @@
   <img src="profitability_impact.png" alt="Profitability Impact" width="800"/>
 </div>
 
+<div align="center">
+  <h3>🔴 Live Demo: <a href="https://mouadbakhchane-data-portfolio-dashboard-t8mqrg.streamlit.app/">Launch Dashboard App</a></h3>
+</div>
+
+<div align="center">
+  <img src="Analysis Dashboard.png" alt="Dashboard Screenshot" width="800"/>
+</div>
+
 ## 📌 Introduction
 In the modern subscription economy, **Data is the new currency**. For telecommunications providers, the cost of acquiring a new customer is often **5x to 25x higher** than retaining an existing one. 
 
