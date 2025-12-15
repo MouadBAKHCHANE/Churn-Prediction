@@ -12,26 +12,26 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for Modern, Light, Card-Based Design
+# Custom CSS for Modern Dark Mode
 st.markdown("""
 <style>
     /* Global Background */
     .stApp {
-        background-color: #F8F9FA;
+        background-color: #0E1117;
     }
     
-    /* Card Style */
+    /* Card Style - Dark */
     .metric-card {
-        background-color: #FFFFFF;
+        background-color: #1E1E1E;
         padding: 20px;
         border-radius: 12px;
-        box_shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        border: 1px solid #E9ECEF;
+        box_shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        border: 1px solid #303030;
         margin-bottom: 20px;
     }
     
     .metric-title {
-        color: #6C757D;
+        color: #A0A0A0;
         font-size: 0.9rem;
         font-weight: 600;
         text-transform: uppercase;
@@ -39,7 +39,7 @@ st.markdown("""
     }
     
     .metric-value {
-        color: #212529;
+        color: #FFFFFF;
         font-size: 1.8rem;
         font-weight: 700;
         margin: 5px 0;
@@ -50,19 +50,18 @@ st.markdown("""
         font-weight: 500;
     }
     
-    .metric-delta.positive { color: #28A745; }
-    .metric-delta.negative { color: #DC3545; }
+    .metric-delta.positive { color: #00E676; }
+    .metric-delta.negative { color: #FF5252; }
     
     /* Headers */
     h1, h2, h3 {
-        color: #1A202C !important;
+        color: #FFFFFF !important;
         font-family: 'Inter', sans-serif;
     }
     
     /* Sidebar */
     .css-1d391kg {
-        background-color: #FFFFFF;
-        border-right: 1px solid #E2E8F0;
+        background-color: #262730;
     }
     
     /* Buttons */
@@ -110,7 +109,7 @@ with st.sidebar:
     
     st.markdown("---")
     st.markdown("### Settings")
-    st.checkbox("Dark Mode", value=False, disabled=True, help="Coming soon (Light Mode active)")
+    st.checkbox("Dark Mode", value=True, disabled=True, help="Dark Mode active")
     
     st.markdown("---")
     st.markdown("Built with 🧠 by Mouad Bakhchane")
@@ -183,7 +182,12 @@ if page == "📊 Overview & Insights":
                 color_discrete_map={'No': '#2962FF', 'Yes': '#FF3D00'},
                 title=f"Customer Distribution by {col_filter}"
             )
-            fig.update_layout(plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
+            # Dark Mode Plotly Updates
+            fig.update_layout(
+                plot_bgcolor="rgba(0,0,0,0)", 
+                paper_bgcolor="rgba(0,0,0,0)",
+                font={'color': '#FAFAFA'}
+            )
             st.plotly_chart(fig, use_container_width=True)
             
         with tab2:
@@ -197,7 +201,11 @@ if page == "📊 Overview & Insights":
                 color_discrete_map={'No': '#2962FF', 'Yes': '#FF3D00'},
                 opacity=0.7
             )
-            fig2.update_layout(plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
+            fig2.update_layout(
+                plot_bgcolor="rgba(0,0,0,0)", 
+                paper_bgcolor="rgba(0,0,0,0)",
+                font={'color': '#FAFAFA'}
+            )
             st.plotly_chart(fig2, use_container_width=True)
 
     with c2:
@@ -244,7 +252,6 @@ elif page == "🔮 Churn Simulator":
             acq_cost = st.slider("Acquisition Cost ($)", 0.0, 1000.0, 200.0)
     
     # PREDICTION LOGIC
-    # ... (Same preparation logic as before, just cleaner code)
     input_data = pd.DataFrame({
         'tenure': [tenure],
         'MonthlyCharges': [monthly_charges],
@@ -288,11 +295,12 @@ elif page == "🔮 Churn Simulator":
         
         # Risk Gauge
         fig_gauge = px.pie(values=[prob, 1-prob], names=["Risk", "Safe"], hole=0.7, 
-                           color_discrete_sequence=['#FF3D00', '#E0E0E0'])
-        fig_gauge.update_layout(showlegend=False, margin=dict(t=0,b=0,l=0,r=0), height=200)
+                           color_discrete_sequence=['#FF3D00', '#424242'])
+        fig_gauge.update_layout(showlegend=False, margin=dict(t=0,b=0,l=0,r=0), height=200,
+                                paper_bgcolor="rgba(0,0,0,0)")
         st.plotly_chart(fig_gauge, use_container_width=True)
         
-        st.markdown(f"<h2 style='text-align: center; color: {'#FF3D00' if prob > 0.5 else '#28A745'};'>{prob*100:.1f}% Risk</h2>", unsafe_allow_html=True)
+        st.markdown(f"<h2 style='text-align: center; color: {'#FF3D00' if prob > 0.5 else '#00E676'};'>{prob*100:.1f}% Risk</h2>", unsafe_allow_html=True)
         
         st.markdown("### 📋 Strategic Action Plan")
         
